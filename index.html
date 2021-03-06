@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Planner Website</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    
+    <div id="main-container">
+    
+        <header>
+            
+         <div class="input-food-name">
+            <input type="text" class="form-control" placeholder="Search Recipe" id = "recipeInput" required>
+            <div class="input-food-btn">
+                <button class="submit-btn">
+                <i class="fas fa-search"></i>
+                </button>
+                <br />
+                <span class="random-search">No Matching Recipe!</span>
+            </div>
+        </div> 
+    
+        </header>
+
+        <div class="recipe-generator-display">
+            <div class="general-info">
+              <h1 class="recipe-generator">Recipe Generator</h1>
+              <p class="food">Ingredients List</p>
+            </div>
+        </div>
+    
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+
+  </body>
+</html>
