@@ -115,7 +115,8 @@ function edamamPass(data) {
   
     var recipeObject = {
     title: recipeName,
-    ingr: recipeArray
+    ingr: recipeArray,
+    yield: 4
   }
 
   fetch('https://api.edamam.com/api/nutrition-details?app_id=749d2c5d&app_key=6212ed22f3bc63c9398aabf63bd48cc2', {
@@ -124,11 +125,34 @@ function edamamPass(data) {
       headers: {
         "Content-Type": "application/json"
       }
+    }).then(function(response){
+      if (response.ok) {
+        return response.json().then(function(data) {
+          sumNutrients(data)
+        })
+      }
+      else {
+        lowQuality()
+      }
     })
-  .then(response => response.json())
-  .then(json => {
-      sumNutrients(json)
-  });
+
+  function lowQuality() {
+    var recipeContainer = document.getElementById("recipe-generator-display")
+    recipeContainer.innerHTML = ""
+    
+    var errEl = document.createElement("h1")
+    var errMessage = "Sorry, this recipe's nutrition facts cannot be obtained, please try again."
+    errEl.textContent = errMessage
+    recipeContainer.appendChild(errEl)
+  }
+
+
+
+
+  // .then(response => response.json())
+  // .then(json => {
+  //     sumNutrients(json)
+  // });
   
 
   
@@ -152,9 +176,8 @@ function sumNutrients (data) {
   totCals = Math.round(totCals + data.totalNutrients.ENERC_KCAL.quantity)
 
   console.log(data)
-  var suggServings = data.yield
   
-  displayComponents(suggServings)
+  displayComponents()
 }
 
 // function fetchNutrition (ingredients) {
@@ -205,7 +228,7 @@ function sumNutrients (data) {
 //   console.log(totCals)
 // }
 
-function displayComponents(servings) {
+function displayComponents() {
   var recipeContainer = document.getElementById("recipe-generator-display")
   recipeContainer.innerHTML = ""
 
@@ -227,7 +250,7 @@ function displayComponents(servings) {
   recipeContainer.appendChild(instrEl)
 
   var servingsEl = document.createElement("h4")
-  servingsEl.textContent = "Suggested servings: " + servings
+  servingsEl.textContent = "Serves four."
   recipeContainer.appendChild(servingsEl)
 
   var calHeader = document.createElement("h3")
@@ -235,7 +258,7 @@ function displayComponents(servings) {
   recipeContainer.appendChild(calHeader)
 
   var calEl = document.createElement("h4")
-  calEl.textContent = Math.round(totCals/servings) + " kCal"
+  calEl.textContent = Math.round(totCals/4) + " kCal"
   recipeContainer.appendChild(calEl)
 
   var carbHeader = document.createElement("h3")
@@ -243,7 +266,7 @@ function displayComponents(servings) {
   recipeContainer.appendChild(carbHeader)
 
   var carbEl = document.createElement("h4")
-  carbEl.textContent = Math.round(totCarbs/servings) + "g"
+  carbEl.textContent = Math.round(totCarbs/4) + "g"
   recipeContainer.appendChild(carbEl)
 
   var fatHeader = document.createElement("h3")
@@ -251,7 +274,7 @@ function displayComponents(servings) {
   recipeContainer.appendChild(fatHeader)
 
   var fatEl = document.createElement("h4")
-  fatEl.textContent = Math.round(totFat/servings) + "g"
+  fatEl.textContent = Math.round(totFat/4) + "g"
   recipeContainer.appendChild(fatEl)
 
   var protHeader = document.createElement("h3")
@@ -259,7 +282,7 @@ function displayComponents(servings) {
   recipeContainer.appendChild(protHeader)
 
   var protEl = document.createElement("h4")
-  protEl.textContent = Math.round(totProtein/servings) + "g"
+  protEl.textContent = Math.round(totProtein/4) + "g"
   recipeContainer.appendChild(protEl)
 
 
