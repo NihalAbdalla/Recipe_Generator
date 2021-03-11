@@ -62,6 +62,7 @@ function displayRecipes(meals) {
     recipeContainer.appendChild(currentRecipe)
 
     let thumbEl = document.createElement("div")
+    thumbEl.setAttribute("class", "image-div")
     let thumbURL = meals[i].strMealThumb
     console.log(thumbURL)
     thumbEl.innerHTML = "<img class = 'recipe-image' src='" + thumbURL  + "'>"
