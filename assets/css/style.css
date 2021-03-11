@@ -2,35 +2,46 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Noto Sans", sans-serif;
-}
-
-html {
-  font-size: 60.5%;
 }
 
 html,
 body {
   width: 100%;
   height: 100vh;
-  overflow: hidden;
-  height: 5.5rem;
   position: relative;
+  font-size: 60.5%;
 }
 
-.fa-search {
+#header {
+  font-family: "Handlee", cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-group {
+  float: right;
+  height: 60%;
+  width: 25%;
+  position: relative;
+  margin: 1.5rem 2.5rem 0 0;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0 0 0.3rem 2.5rem;
   color: black;
-  font-size: 1.8rem;
+  font-size: 2.6rem;
 }
 
 .submit-btn {
   position: absolute;
-  top: 27%;
-  left: 6%;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  outline: none;
+  right: 6%;
   cursor: pointer;
+}
+
+.fa-search {
+  color: grey;
+  font-size: 2.6rem;
 }
 
 input[type="text"] {
@@ -46,19 +57,10 @@ input[type="text"] {
 }
 
 input[type="text"]::placeholder {
-  color: black;
+  color: grey;
 }
 
-.random-search {
-  display: hidden;
-  position: absolute;
-  left: 2rem;
-  color: black;
-  font-size: 15px;
-  display: none;
-}
-
-.recipe-generator-display {
+#recipe-generator-display {
   position: absolute;
   top: 20%;
   width: 90%;
@@ -66,16 +68,103 @@ input[type="text"]::placeholder {
   color: black;
 }
 
-.food {
-  font-size: 2.2rem;
-  letter-spacing: 0.1rem;
-  padding-left: 0.3rem;
+.error-message {
+  font-family: Impact, "Arial Narrow", sans-serif;
+  position: absolute;
+  align-items: center;
+  text-align: center;
 }
 
-.recipe-generator {
-  font-size: 4rem;
+.dashboard {
+  /* flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  background: black;
+  border-radius: 2rem; */
+}
+
+.recipe-button {
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  width: 20%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: pointer;
+}
+
+.recipe-image {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2rem;
+  margin: 2rem 0rem;
+  padding: 2rem;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+  width: 20%;
+  justify-content: space-between;
+}
+
+#recipe-list {
+  display: flex;
+  margin: 2rem 0rem;
+  padding: 1rem 5rem;
+  align-items: center;
+  font-size: 1rem;
   line-height: 3.5rem;
   margin-bottom: 1rem;
-  font-weight: 800;
-  letter-spacing: 0.1rem;
+  box-sizing: border-box;
+  width: 30%;
+  letter-spacing: 0.5rem;
+}
+
+.li {
+}
+
+#recipe-instructions {
+  display: flex;
+  color: black;
+  box-sizing: border-box;
+  border-radius: 2rem;
+  margin: 2rem 0rem;
+  padding: 2rem;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+  width: 80%;
+}
+
+.nutrition-header {
+  margin: 2rem 0rem;
+  padding: 1rem;
+  border-radius: 2rem;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 20%;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.nutrition-content {
+  margin: 2rem 0rem;
+  padding: 1rem;
+  border-radius: 2rem;
+  font-size: 2rem;
+  line-height: 3.5rem;
+  letter-spacing: 0.5rem;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  width: 20%;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Times New Roman", Times, serif;
 }
