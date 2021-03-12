@@ -19,6 +19,11 @@ function search(event){
 
   var searchIngredient = document.getElementById("recipeInput").value
 
+  if (!searchIngredient) {
+    noResults()
+    return
+  }
+
   fetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=" + searchIngredient).then(function(response) {
     // The browser fetches the resource from the remote server without first looking in the cache.
     // The browser will then update the cache with the downloaded resource.
@@ -53,7 +58,9 @@ function noResults() {
 
 function displayRecipes(meals) {
  for (i=0; i<meals.length; i++){
+   
     var recipeContainer = document.getElementById("recipe-generator-display")
+    recipeContainer.removeAttribute("class", "recipe-card")
     var currentRecipe = document.createElement("div")
     
     currentRecipe.textContent = meals[i].strMeal
@@ -119,7 +126,7 @@ function edamamPass(data) {
     var recipeObject = {
     title: recipeName,
     ingr: recipeArray,
-    yield: 6
+    yield: 4
   }
   
   fetch('https://api.edamam.com/api/nutrition-details?app_id=749d2c5d&app_key=6212ed22f3bc63c9398aabf63bd48cc2', {
@@ -184,60 +191,14 @@ function sumNutrients (data) {
   displayComponents()
 }
 
-// function fetchNutrition (ingredients) {
-//   for (var i=0; i<ingredients.length; i++) {
-//     var ingredient = ingredients[i]
-//     var ingredientForm = ingredient.replace(" ", "%20")
-    
-//     // ***Ask TA why we had to use addNutrients function below***
-//     fetch("https://api.edamam.com/api/food-database/v2/parser?ingr=" + ingredientForm + "&app_id=15deb37b&app_key=ec341a9362cca4de065a6bd100736317").then(function(response) {
-//         if (response.ok) {
-//             return response.json().then(function(data) {
-//                 console.log(data)
-//                 addNutrients(data)
-//             })
-//         }
-//         else {
-//             throw Error(response.statusText);
-//         }
-//     })
-
-//   }
-
-// }
-
-// function addNutrients(data) {
-//   console.log(data.hints[0].food.nutrients.CHOCDF)
-  
-//   // for (i=0; i<measure.length; i++) {
-//   //   var thisMeasure = measure[i]
-//   //   if (thisMeasure.charAt(thisMeasure.length - 1) !== 'g') {
-//   //     va=  
-//   //   }
-
-//   // }
-
-//   console.log(measure)
-
-//   totCarbs = totCarbs + data.hints[0].food.nutrients.CHOCDF
-//   totFat = totFat + data.hints[0].food.nutrients.FAT
-//   totCals = totCals + data.hints[0].food.nutrients.ENERC_KCAL
-//   totProtein = totProtein + data.hints[0].food.nutrients.PROCNT
-
-//   displayComponents()
-
-//   console.log(totCarbs)
-//   console.log(totFat)
-//   console.log(totProtein)
-//   console.log(totCals)
-// }
-
 function displayComponents() {
   var recipeContainer = document.getElementById("recipe-generator-display")
+  recipeContainer.setAttribute("class", "recipe-card")
   recipeContainer.innerHTML = ""
 
   var cardName = document.createElement("h2")
   cardName.textContent = recipeName
+  cardName.setAttribute("id", "card-header")
   recipeContainer.appendChild(cardName)
 
   var cardIngredients = document.createElement("ul")
@@ -250,54 +211,51 @@ function displayComponents() {
     cardIngredients.appendChild(listItem)    
   }
 
+  var servingsEl = document.createElement("h5")
+  servingsEl.textContent = "Serves four."
+  servingsEl.setAttribute("id", "servings-text")
+  recipeContainer.appendChild(servingsEl)
+
   var instrEl = document.createElement("p")
   instrEl.setAttribute("id", "recipe-instructions")
   instrEl.textContent = instructions
   recipeContainer.appendChild(instrEl)
 
-  var servingsEl = document.createElement("h5")
-  servingsEl.textContent = "Serves six."
-  recipeContainer.appendChild(servingsEl)
-
   var calHeader = document.createElement("h3")
-  calHeader.setAttribute("class", "nutrition-header")
+  calHeader.setAttribute("class", "nutrition-content")
   calHeader.textContent = "Calories (per serving): "
   recipeContainer.appendChild(calHeader)
 
   var calEl = document.createElement("h4")
-  calEl.setAttribute("class", "nutrition-content")
-  calEl.textContent = Math.round(totCals/6) + " kCal"
-  recipeContainer.appendChild(calEl)
+  calEl.textContent = Math.round(totCals/4) + " kCal"
+  calHeader.appendChild(calEl)
 
   var carbHeader = document.createElement("h3")
-  carbHeader.setAttribute("class", "nutrition-header")
+  carbHeader.setAttribute("class", "nutrition-content")
   carbHeader.textContent = "Carbs (per serving): "
   recipeContainer.appendChild(carbHeader)
 
   var carbEl = document.createElement("h4")
-  carbEl.setAttribute("class", "nutrition-content")
-  carbEl.textContent = Math.round(totCarbs/6) + "g"
-  recipeContainer.appendChild(carbEl)
+  carbEl.textContent = Math.round(totCarbs/4) + "g"
+  carbHeader.appendChild(carbEl)
 
   var fatHeader = document.createElement("h3")
-  fatHeader.setAttribute("class", "nutrition-header")
+  fatHeader.setAttribute("class", "nutrition-content")
   fatHeader.textContent = "Fat (per serving): "
   recipeContainer.appendChild(fatHeader)
 
   var fatEl = document.createElement("h4")
-  fatEl.setAttribute("class", "nutrition-content")
-  fatEl.textContent = Math.round(totFat/6) + "g"
-  recipeContainer.appendChild(fatEl)
+  fatEl.textContent = Math.round(totFat/4) + "g"
+  fatHeader.appendChild(fatEl)
 
   var protHeader = document.createElement("h3")
-  protHeader.setAttribute("class", "nutrition-header")
+  protHeader.setAttribute("class", "nutrition-content")
   protHeader.textContent = "Protein (per serving): "
   recipeContainer.appendChild(protHeader)
 
   var protEl = document.createElement("h4")
-  protEl.setAttribute("class", "nutrition-content")
-  protEl.textContent = Math.round(totProtein/6) + "g"
-  recipeContainer.appendChild(protEl)
+  protEl.textContent = Math.round(totProtein/4) + "g"
+  protHeader.appendChild(protEl)
 
 
 
