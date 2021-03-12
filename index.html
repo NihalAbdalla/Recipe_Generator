@@ -3,45 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meal Planner Website</title>
+    <title>Recipe Generator</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="C:\Users\rutte\Desktop\osu-homework\project\MealPlanner_Project\assets\css\style.css" /> -->
   </head>
   <body>
-    
-    <div id="main-container">
-    
-        <header>
-            
-         <div class="input-food-name">
-            <input type="text" class="form-control" placeholder="Search Recipe" id = "recipeInput" required>
-            <div class="input-food-btn">
-                <button class="submit-btn">
-                <i class="fas fa-search"></i>
-                </button>
-                <br />
-                <span class="random-search">No Matching Recipe!</span>
-            </div>
-        </div> 
-    
-        </header>
+  
+  <h1 id="header">Recipe Generator</h1>
 
-        <div class="recipe-generator-display">
-            <div class="general-info">
-              <h1 class="recipe-generator">Recipe Generator</h1>
-              <p class="hidden">Ingredients List</p>
-            </div>
+    <form>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search by ingredient" id = "recipeInput" required>
+        <div class = "input-group-btn">
+          <button class="btn btn-default">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
         </div>
-    
-    </div>
+      </div> 
+    </form>
 
-    <script src="./assets/js/script.js"></script>
+  <div id ="recipe-generator-display">
+      <div class="general-info">
+      </div>
+  </div>
 
+  <script src="assets/js/script.js"></script>
   </body>
+
+
 </html>
