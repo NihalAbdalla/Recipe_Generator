@@ -7,3 +7,8 @@ Javascript added functionality to the website which allows our users to put an i
 This functionality was achieved with vanilla Javascript and API fetch/post calls. 
 
 Link to Webpage: https://nihalabdalla.github.io/Recipe_Generator/
+
+Screen shot of webpage ![Screenshot of Application](assets/Demo.JPG)
+
+
+
